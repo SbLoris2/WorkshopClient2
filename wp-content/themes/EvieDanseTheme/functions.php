@@ -18,7 +18,10 @@ function evidanse_fallback_menu() {
     echo '<li><a href="#contact">Contact</a></li>';
     echo '</ul>';
 }
-
+function eviedanse_scripts() {
+    wp_enqueue_script('eviedanse-script', get_template_directory_uri() . '/script.js', array(), '1.0', true);
+}
+add_action('wp_enqueue_scripts', 'eviedanse_scripts');
 // Support des fonctionnalités WordPress
 function evidanse_setup() {
     add_theme_support('title-tag');
