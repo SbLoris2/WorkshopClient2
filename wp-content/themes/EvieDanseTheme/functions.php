@@ -21,6 +21,23 @@ function evidanse_fallback_menu() {
 function eviedanse_scripts() {
     wp_enqueue_script('eviedanse-script', get_template_directory_uri() . '/script.js', array(), '1.0', true);
 }
+function handle_contact_form_submission() {
+    if (isset($_POST['action']) && $_POST['action'] == 'contact_form_submission') {
+        // Traitement du formulaire
+        $first_name = sanitize_text_field($_POST['first_name']);
+        $last_name = sanitize_text_field($_POST['last_name']);
+        $email = sanitize_email($_POST['email']);
+        $phone = sanitize_text_field($_POST['phone']);
+        $message = sanitize_textarea_field($_POST['message']);
+        
+        // Envoi par email ou sauvegarde en base
+        // Redirection après traitement
+        wp_redirect(home_url('/?submitted=1'));
+        exit;
+    }
+}
+add_action('admin_post_contact_form_submission', 'handle_contact_form_submission');
+add_action('admin_post_nopriv_contact_form_submission', 'handle_contact_form_submission');
 add_action('wp_enqueue_scripts', 'eviedanse_scripts');
 // Support des fonctionnalités WordPress
 function evidanse_setup() {
