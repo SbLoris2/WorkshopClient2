@@ -1,0 +1,5 @@
+path: .
+dbhost: localhost
+dbuser: root
+dbpass:
+dbsocket: /opt/lampp/var/mysql/mysql.sock
